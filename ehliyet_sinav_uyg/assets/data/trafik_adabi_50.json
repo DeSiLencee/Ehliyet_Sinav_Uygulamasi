@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "kategori": "Trafik Adabı",
+    "soru": "Trafikte saygılı olmanın önemi nedir?",
+    "secenekler": {
+      "A": "Sadece kurallara uymak için",
+      "B": "Trafik kazalarını artırmak için",
+      "C": "Trafik güvenliğini ve akışını sağlamak için",
+      "D": "Diğer sürücüleri rahatsız etmek için"
+    },
+    "dogru": "C",
+    "aciklama": "Trafikte saygılı olmak, trafik güvenliğini artırır ve akışını düzenler."
+  }
+]

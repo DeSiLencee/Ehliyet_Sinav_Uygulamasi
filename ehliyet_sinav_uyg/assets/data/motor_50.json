@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "kategori": "Motor ve Araç Tekniği",
+    "soru": "Motor yağı ne işe yarar?",
+    "secenekler": {
+      "A": "Motoru soğutur",
+      "B": "Motor parçalarını yağlar ve aşınmayı önler",
+      "C": "Yakıt tüketimini artırır",
+      "D": "Egzoz emisyonunu azaltır"
+    },
+    "dogru": "B",
+    "aciklama": "Motor yağı, motorun hareketli parçaları arasındaki sürtünmeyi azaltarak aşınmayı önler."
+  }
+]

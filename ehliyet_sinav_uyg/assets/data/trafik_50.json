@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "kategori": "Trafik ve Çevre",
+    "soru": "Trafik işaretlerine uymak neden önemlidir?",
+    "secenekler": {
+      "A": "Sadece ceza almamak için",
+      "B": "Trafik akışını hızlandırmak için",
+      "C": "Can ve mal güvenliğini sağlamak için",
+      "D": "Diğer sürücüleri etkilemek için"
+    },
+    "dogru": "C",
+    "aciklama": "Trafik işaretleri, can ve mal güvenliğini sağlamak amacıyla konulmuştur."
+  }
+]

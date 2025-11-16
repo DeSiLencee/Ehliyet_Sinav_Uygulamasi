@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "702142515222",
+    "firebase_url": "https://ehliyet-sinav-uygulamasi-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ehliyet-sinav-uygulamasi",
+    "storage_bucket": "ehliyet-sinav-uygulamasi.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702142515222:android:b3f76b459d7a197e9c0d37",
+        "android_client_info": {
+          "package_name": "com.example.ehliyet_sinav_uyg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXlpOqNd9qM5lq97yjmT7QRWupVbuXAKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

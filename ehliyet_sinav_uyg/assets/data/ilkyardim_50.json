@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "kategori": "İlk Yardım",
+    "soru": "Kanamanın durdurulması için ilk yardımda ne yapılmalıdır?",
+    "secenekler": {
+      "A": "Yaralıyı oturtmak",
+      "B": "Kanayan bölgeye baskı uygulamak",
+      "C": "Yaralıya su içirmek",
+      "D": "Yaralıyı hareket ettirmek"
+    },
+    "dogru": "B",
+    "aciklama": "Kanamanın durdurulmasında en etkili yöntem, kanayan bölgeye doğrudan baskı uygulamaktır."
+  }
+]
