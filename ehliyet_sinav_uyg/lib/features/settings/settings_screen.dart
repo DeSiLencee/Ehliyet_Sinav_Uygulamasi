@@ -76,10 +76,6 @@ class SettingsScreen extends StatelessWidget {
                           },
                           items: const [
                             DropdownMenuItem(
-                              value: ThemeMode.system,
-                              child: Text('Sistem'),
-                            ),
-                            DropdownMenuItem(
                               value: ThemeMode.light,
                               child: Text('Aydınlık'),
                             ),

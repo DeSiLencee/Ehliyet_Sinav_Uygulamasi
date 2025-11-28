@@ -5,7 +5,7 @@ class SettingsProvider with ChangeNotifier {
   bool _shuffleQuestions = true;
   
   bool _timerEnabled = true;
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.dark;
 
   bool get shuffleQuestions => _shuffleQuestions;
   
@@ -21,7 +21,7 @@ class SettingsProvider with ChangeNotifier {
     _shuffleQuestions = prefs.getBool('shuffleQuestions') ?? true;
     
     _timerEnabled = prefs.getBool('timerEnabled') ?? true;
-    _themeMode = ThemeMode.values[prefs.getInt('themeMode') ?? ThemeMode.system.index];
+    _themeMode = ThemeMode.values[prefs.getInt('themeMode') ?? ThemeMode.dark.index];
     notifyListeners();
   }
 
