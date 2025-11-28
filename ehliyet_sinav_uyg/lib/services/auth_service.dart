@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Sign in with Google
   Future<User?> signInWithGoogle() async {
@@ -43,6 +45,23 @@ class AuthService {
       await _googleSignIn.signOut();
       await _auth.signOut();
     } catch (e) {
+    }
+  }
+
+  // Delete user account
+  Future<void> deleteAccount() async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        // Delete user data from Firestore
+        await _firestore.collection('users').doc(user.uid).delete();
+        // Delete user from Firebase Authentication
+        await user.delete();
+        await signOut();
+      }
+    } catch (e) {
+      // Handle errors, e.g., re-authentication needed
+      rethrow;
     }
   }
 }
