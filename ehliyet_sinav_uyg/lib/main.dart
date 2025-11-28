@@ -1,3 +1,4 @@
+import 'package:ehliyet_sinav_uyg/features/auth/login_screen.dart';
 import 'package:ehliyet_sinav_uyg/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,6 @@ import 'package:provider/provider.dart';
 import 'core/theme/app_theme.dart';
 import 'providers/quiz_provider.dart';
 import 'providers/settings_provider.dart';
-
-import 'features/home/home_screen.dart'; // Will create this next
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: settingsProvider.themeMode,
-          home: HomeScreen(),
+          home: const LoginScreen(),
         );
       },
     );
