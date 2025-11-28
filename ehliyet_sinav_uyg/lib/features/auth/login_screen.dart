@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               // App Logo or Title
               const Text(
-                'Ehliyet Sınavı Hazırlık',
+                'Ehliyetim',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 32,

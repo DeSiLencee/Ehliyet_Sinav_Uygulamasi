@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return Consumer<SettingsProvider>(
       builder: (context, settingsProvider, child) {
         return MaterialApp(
-          title: 'Ehliyet Sınav Uygulaması',
+          title: 'Ehliyetim',
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: settingsProvider.themeMode,

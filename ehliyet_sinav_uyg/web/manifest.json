@@ -1,6 +1,6 @@
 {
-    "name": "ehliyet_sinav_uyg",
-    "short_name": "ehliyet_sinav_uyg",
+    "name": "Ehliyetim",
+    "short_name": "Ehliyetim",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

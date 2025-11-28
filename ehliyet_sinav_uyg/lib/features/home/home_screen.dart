@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ehliyet Sınavı Hazırlık'),
+        title: const Text('Ehliyetim'),
         centerTitle: true,
       ),
       body: Padding(
