@@ -53,8 +53,10 @@ class AuthService {
     try {
       User? user = _auth.currentUser;
       if (user != null) {
-        // Delete user data from Firestore
-        await _firestore.collection('users').doc(user.uid).delete();
+        if (!user.isAnonymous) {
+          // Delete user data from Firestore
+          await _firestore.collection('users').doc(user.uid).delete();
+        }
         // Delete user from Firebase Authentication
         await user.delete();
         await signOut();
