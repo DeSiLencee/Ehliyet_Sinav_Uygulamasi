@@ -35,6 +35,28 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void _signInWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+    });
+    dynamic result = await _auth.signInWithGoogle();
+    setState(() {
+      _isLoading = false;
+    });
+    if (result == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Giriş yapılamadı. Lütfen tekrar deneyin.'),
+        ),
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,13 +78,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 64),
 
-              // Email Login Button
+              // Google Login Button
               ElevatedButton.icon(
-                onPressed: () {
-                  // TODO: Implement Email Login
-                },
+                onPressed: _signInWithGoogle,
                 icon: const Icon(Icons.email),
-                label: const Text('E-posta ile Giriş Yap'),
+                label: const Text('Google ile Giriş Yap'),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   textStyle: const TextStyle(fontSize: 18),
