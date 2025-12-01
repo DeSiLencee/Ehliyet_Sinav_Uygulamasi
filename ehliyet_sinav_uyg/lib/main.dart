@@ -14,7 +14,7 @@ void main() async {
   );
   runApp(
     MultiProvider(
-      providers: [
+      providers:[
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
         ChangeNotifierProvider(create: (_) => QuizProvider()),
         
