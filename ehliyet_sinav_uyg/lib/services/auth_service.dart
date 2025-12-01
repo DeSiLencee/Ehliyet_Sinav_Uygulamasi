@@ -50,20 +50,47 @@ class AuthService {
 
   // Delete user account
   Future<void> deleteAccount() async {
+    User? user = _auth.currentUser;
+    if (user == null) {
+      throw Exception("No user is currently signed in.");
+    }
+
     try {
-      User? user = _auth.currentUser;
-      if (user != null) {
-        if (!user.isAnonymous) {
-          // Delete user data from Firestore
-          await _firestore.collection('users').doc(user.uid).delete();
+      if (!user.isAnonymous) {
+        await _firestore.collection('users').doc(user.uid).delete();
+      }
+      await user.delete();
+      await signOut();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        if (user.providerData.any((info) => info.providerId == GoogleAuthProvider.PROVIDER_ID)) {
+          try {
+            final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+            if (googleUser == null) {
+              throw Exception("Account deletion cancelled: Re-authentication failed.");
+            }
+            
+            final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+            final AuthCredential credential = GoogleAuthProvider.credential(
+              accessToken: googleAuth.accessToken,
+              idToken: googleAuth.idToken,
+            );
+
+            await user.reauthenticateWithCredential(credential);
+            
+            await user.delete();
+            await signOut();
+          } catch (reauthError) {
+            throw Exception("Failed to re-authenticate. Could not delete account.");
+          }
+        } else {
+          throw Exception("Re-authentication required. Please sign in again to delete your account.");
         }
-        // Delete user from Firebase Authentication
-        await user.delete();
-        await signOut();
+      } else {
+        throw Exception("An error occurred while deleting your account: ${e.message}");
       }
     } catch (e) {
-      // Handle errors, e.g., re-authentication needed
-      rethrow;
+      throw Exception("An unexpected error occurred during account deletion.");
     }
   }
 }
