@@ -18,13 +18,43 @@ class CategoryScreen extends StatelessWidget {
     required this.testId,
   });
 
+  String _formatMonthName(String monthKey) {
+    switch (monthKey.toLowerCase()) {
+      case 'ocak': return 'Ocak';
+      case 'subat': return 'Şubat';
+      case 'mart': return 'Mart';
+      case 'nisan': return 'Nisan';
+      case 'mayis': return 'Mayıs';
+      case 'haziran': return 'Haziran';
+      case 'temmuz': return 'Temmuz';
+      case 'agustos': return 'Ağustos';
+      case 'eylul': return 'Eylül';
+      case 'ekim': return 'Ekim';
+      case 'kasim': return 'Kasım';
+      case 'aralik': return 'Aralık';
+      default:
+        return monthKey.substring(0, 1).toUpperCase() + monthKey.substring(1);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final settingsProvider = Provider.of<SettingsProvider>(context);
     final quizProvider = Provider.of<QuizProvider>(context, listen: false);
 
-    // Use testId for the title, as it's more specific
-    final appBarTitle = testId.replaceAll('_', ' ');
+    String appBarTitle;
+    if (month != null && testId.contains('_')) {
+      final parts = testId.split('_');
+      if (parts.length >= 2) {
+        final day = parts[0];
+        final monthKey = parts[1];
+        appBarTitle = '$day ${_formatMonthName(monthKey)}';
+      } else {
+        appBarTitle = testId.replaceAll('_', ' ');
+      }
+    } else {
+      appBarTitle = testId.replaceAll('_', ' ');
+    }
 
     return Scaffold(
       appBar: AppBar(
