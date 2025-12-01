@@ -48,6 +48,13 @@ class QuizProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void setCurrentIndex(int index) {
+    if (index >= 0 && index < _questions.length) {
+      _currentIndex = index;
+      notifyListeners();
+    }
+  }
+
   void selectOption(int questionIndex, String option) {
     if (!_isFinished) {
       _selectedOptions[questionIndex] = option;
