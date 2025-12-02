@@ -1,6 +1,6 @@
 import 'package:ehliyet_sinav_uyg/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:ehliyet_sinav_uyg/features/home/home_screen.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,59 +10,47 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthService _auth = AuthService();
   bool _isLoading = false;
 
-  void _signInAnonymously() async {
+  void _signInAnonymously(AuthService authService) async {
     setState(() {
       _isLoading = true;
     });
-    dynamic result = await _auth.signInAnonymously();
+    dynamic result = await authService.signInAnonymously();
+    if (!mounted) return;
     setState(() {
       _isLoading = false;
     });
     if (result == null) {
-      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Giriş yapılamadı. Lütfen tekrar deneyin.'),
         ),
-      );
-    } else {
-      if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     }
   }
 
-  void _signInWithGoogle() async {
+  void _signInWithGoogle(AuthService authService) async {
     setState(() {
       _isLoading = true;
     });
-    dynamic result = await _auth.signInWithGoogle();
+    dynamic result = await authService.signInWithGoogle();
+    if (!mounted) return;
     setState(() {
       _isLoading = false;
     });
     if (result == null) {
-      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Giriş yapılamadı. Lütfen tekrar deneyin.'),
         ),
-      );
-    } else {
-      if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context, listen: false);
     return Scaffold(
       body: Center(
         child: Padding(
@@ -84,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               // Google Login Button
               ElevatedButton.icon(
-                onPressed: _signInWithGoogle,
+                onPressed: () => _signInWithGoogle(authService),
                 icon: const Icon(Icons.email),
                 label: const Text('Google ile Giriş Yap'),
                 style: ElevatedButton.styleFrom(
@@ -98,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
               _isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : ElevatedButton.icon(
-                      onPressed: _signInAnonymously,
+                      onPressed: () => _signInAnonymously(authService),
                       icon: const Icon(Icons.person),
                       label: const Text('Misafir Olarak Devam Et'),
                       style: ElevatedButton.styleFrom(

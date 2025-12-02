@@ -1,5 +1,6 @@
-import 'package:ehliyet_sinav_uyg/features/auth/login_screen.dart';
+import 'package:ehliyet_sinav_uyg/features/auth/auth_wrapper.dart';
 import 'package:ehliyet_sinav_uyg/firebase_options.dart';
+import 'package:ehliyet_sinav_uyg/services/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +15,10 @@ void main() async {
   );
   runApp(
     MultiProvider(
-      providers:[
+      providers: [
+        Provider<AuthService>(create: (_) => AuthService()),
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
         ChangeNotifierProvider(create: (_) => QuizProvider()),
-        
       ],
       child: const MyApp(),
     ),
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: settingsProvider.themeMode,
-          home: const LoginScreen(),
+          home: const AuthWrapper(),
         );
       },
     );
