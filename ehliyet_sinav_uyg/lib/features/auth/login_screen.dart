@@ -22,12 +22,14 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = false;
     });
     if (result == null) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Giriş yapılamadı. Lütfen tekrar deneyin.'),
         ),
       );
     } else {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -44,12 +46,14 @@ class _LoginScreenState extends State<LoginScreen> {
       _isLoading = false;
     });
     if (result == null) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Giriş yapılamadı. Lütfen tekrar deneyin.'),
         ),
       );
     } else {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),

@@ -40,6 +40,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       });
       try {
         await _auth.deleteAccount();
+        if (!mounted) return;
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const LoginScreen()),
           (route) => false,
@@ -48,6 +49,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         setState(() {
           _isLoading = false;
         });
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Hesap silinirken bir hata oluştu. Lütfen tekrar deneyin.'),

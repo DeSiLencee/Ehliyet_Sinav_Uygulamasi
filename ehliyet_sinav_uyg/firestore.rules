@@ -1,0 +1,28 @@
+// Firestore güvenlik kuralları
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Sadece giriş yapmış kullanıcılar kendi verilerini okuyabilir/yazabilir
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // exam_index: kullanıcı sadece okuyabilir
+    match /exam_index/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // sorular: herkes okuyabilir ama kimse yazamaz
+    match /sorular/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Diğer tüm koleksiyonlara erişim kapalı
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

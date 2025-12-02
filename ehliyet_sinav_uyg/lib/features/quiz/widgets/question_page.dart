@@ -26,7 +26,6 @@ class _QuestionPageState extends State<QuestionPage> with AutomaticKeepAliveClie
   @override
   Widget build(BuildContext context) {
     super.build(context); // Important: Call super.build
-    final quizProvider = Provider.of<QuizProvider>(context, listen: false);
     final options = widget.question.secenekler.entries.toList();
 
     return SingleChildScrollView(

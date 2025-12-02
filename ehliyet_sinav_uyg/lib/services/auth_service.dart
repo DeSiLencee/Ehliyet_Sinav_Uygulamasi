@@ -17,7 +17,6 @@ class AuthService {
       }
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
       UserCredential result = await _auth.signInWithCredential(credential);
@@ -45,6 +44,7 @@ class AuthService {
       await _googleSignIn.signOut();
       await _auth.signOut();
     } catch (e) {
+      print('Error signing out: $e');
     }
   }
 
@@ -72,7 +72,6 @@ class AuthService {
             
             final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
             final AuthCredential credential = GoogleAuthProvider.credential(
-              accessToken: googleAuth.accessToken,
               idToken: googleAuth.idToken,
             );
 
